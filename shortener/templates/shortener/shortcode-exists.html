@@ -1,0 +1,76 @@
+ <!DOCTYPE html>
+ <html>
+
+    <head>
+
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title> {% block title %}Trimie |URL shortener{% endblock %} </title>
+	    {% load staticfiles %} {% block css %} {% endblock %}
+	    {% load widget_tweaks %}
+	    <link rel="stylesheet" href="{% static 'shortener/home.css' %}">
+
+
+    </head>   
+
+
+<body>
+    
+
+		<div class="top-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-8">
+						<h1 class="title">TIMMIE</h1>
+						<br>
+				      <form method="POST" enctype='multipart/form-data' action='.'>
+							{% csrf_token %}
+							
+
+				        <div class="form-group input-group input-group-lg" id="long-url">
+						    <input type="url" name="url" maxlength="512" placeholder="Put your bulky url..." class="form-control" required id="id_url" />
+						    <span class="input-group-btn"> <input type="submit" class="btn btn-success" value="Shorten" id="shrink"> </span>
+					    </div>
+				            {% if form.url.errors %}
+				            <div class="text-danger" style="font-size: 21px;text-align: center;">
+				            	Please provide a valid URL
+				            </div>
+				            {% endif %}
+							<!-- <h3>Put your URL, shrink it</h3>
+							{{form.url}}<br> -->
+							<span id="long-url" style="font-size: 20px;color: white">Custom URL : </span>
+							<div class="form-group-lg" id="long-url">
+
+							   <div class="input-group">
+								 <span class="input-group-addon">127.0.0.1:8000/</span>
+					            <input type="text" name="shortcode" maxlength="15" placeholder="Optional" class="form-control" id="id_shortcode" />
+				               </div>
+				           </div>
+
+				           {% if form.shortcode.errors %}
+				            <div class="text-danger" style="font-size: 21px;text-align: center;">
+				            	This shortcode is already taken
+				            </div>
+				            {% endif %}
+				        
+								
+							
+							
+				
+				            
+				       </form>
+			        </div>
+			    </div>
+			</div>
+	    </div>
+
+	<h4 style="font-family:'Courgette', cursive;color:white" id="long-url">This shortcode is already taken</h4>
+		
+			
+				
+
+</body>
+</html>
